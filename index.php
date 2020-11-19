@@ -7,10 +7,10 @@ if(isset($_POST['login']))
   {
     $email=$_POST['email'];
     $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select ID from tbluser where  Email='$email' && Password='$password' ");
+    $query=mysqli_query($con,"select UserId from tbluser where  Email='$email' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
-      $_SESSION['detsuid']=$ret['ID'];
+      $_SESSION['detsuid']=$ret['UserId'];
      header('location:dashboard.php');
     }
     else{

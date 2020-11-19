@@ -8,7 +8,7 @@ if(isset($_POST['submit']))
     $contactno=$_POST['contactno'];
     $email=$_POST['email'];
 
-        $query=mysqli_query($con,"select ID from tbluser where  Email='$email' and MobileNumber='$contactno' ");
+        $query=mysqli_query($con,"select UserId from tbluser where  Email='$email' and MobileNumber='$contactno' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['contactno']=$contactno;
