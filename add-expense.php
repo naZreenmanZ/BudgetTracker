@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
     $dateexpense=$_POST['dateexpense'];
      $item=$_POST['item'];
      $costitem=$_POST['costitem'];
-    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseItem,ExpenseCost) value('$userid','$dateexpense','$item','$costitem')");
+    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
 if($query){
 echo "<script>alert('Expense has been added');</script>";
 echo "<script>window.location.href='manage-expense.php'</script>";
@@ -33,6 +33,11 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
+	<script>   
+	function addcategory() {   
+	window.open("addcategory.php");  
+	}   
+	</script>   
 	
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -77,8 +82,23 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 									<input class="form-control" type="date" value="" name="dateexpense" required="true">
 								</div>
 								<div class="form-group">
-									<label>Item</label>
-									<input type="text" class="form-control" name="item" value="" required="true">
+									<label>Category</label>
+									<!-- <input type="text" class="form-control" name="item" value="" required="true"> -->
+									<select class="form-control" name="category" value="" required="true">
+										 <option value="" disabled selected>Select Category</option>
+										 <?php
+										 // categories to be displayed via loop from tblcategory database
+										 ?>
+										<option value="book" name="1">Book</option>
+										
+									</select>
+								
+									<div class="form-group has-success">
+									<p align="right">
+									<br><button onclick="addcategory()" class="btn btn-primary" name="addcategory">Add Category</button>
+									</p>
+									</div>
+									
 								</div>
 								
 								<div class="form-group">
