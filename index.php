@@ -51,10 +51,10 @@ if(isset($_POST['login']))
 								<input class="form-control" placeholder="Password" name="password" type="password" value="" required="true">
 							</div>
 							<div class="checkbox">
-								<button type="submit" value="login" name="login" class="btn btn-primary">login</button><span style="padding-left:250px">
+								<button type="submit" value="login" name="login" class="btn btn-primary">login</button> <span style="padding-left:200px">
 								<a href="register.php" class="btn btn-primary">Register</a></span>
 							</div>
-							</fieldset>
+						</fieldset>
 					</form>
 				</div>
 			</div>

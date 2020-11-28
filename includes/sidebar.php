@@ -34,7 +34,7 @@ $name=$row['FullName'];
                 <em class="fa fa-navicon">&nbsp;</em>Expenses<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                    <li><a class="" href="add-expense.php">
+                    <li><a class="" href="add-expense2.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Expenses
                     </a></li>
                     <li><a class="" href="manage-expense.php">
@@ -45,10 +45,10 @@ $name=$row['FullName'];
 
             </li>
 			
-			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+			<li class="parent "><a data-toggle="collapse" href="#sub-item-2">
                 <em class="fa fa-navicon">&nbsp;</em>Income<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
-                <ul class="children collapse" id="sub-item-1">
+                <ul class="children collapse" id="sub-item-2">
                     <li><a class="" href="add-expense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Income
                     </a></li>
@@ -60,10 +60,10 @@ $name=$row['FullName'];
 
             </li>
 			
-			 <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+			 <li class="parent "><a data-toggle="collapse" href="#sub-item-3">
                 <em class="fa fa-navicon">&nbsp;</em>Savings<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
-                <ul class="children collapse" id="sub-item-1">
+                <ul class="children collapse" id="sub-item-3">
                     <li><a class="" href="add-expense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Savings
                     </a></li>
@@ -75,18 +75,17 @@ $name=$row['FullName'];
 
             </li>
            
-  <li class="parent "><a data-toggle="collapse" href="#sub-item-2">
+  <li class="parent "><a data-toggle="collapse" href="#sub-item-4">
                 <em class="fa fa-navicon">&nbsp;</em>Expense Report <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
-                <ul class="children collapse" id="sub-item-2">
+                   <ul class="children collapse" id="sub-item-4">
                     <li><a class="" href="expense-datewise-reports.php">
-                        <span class="fa fa-arrow-right">&nbsp;</span>Daywise Expenses
-                    </a></li>
+                        <span class="fa fa-arrow-right">&nbsp;</span> Daywise 
                     <li><a class="" href="expense-monthwise-reports.php">
-                        <span class="fa fa-arrow-right">&nbsp;</span>Monthwise Expenses
+                        <span class="fa fa-arrow-right">&nbsp;</span> Monthwise 
                     </a></li>
                     <li><a class="" href="expense-yearwise-reports.php">
-                        <span class="fa fa-arrow-right">&nbsp;</span>Yearwise Expenses
+                        <span class="fa fa-arrow-right">&nbsp;</span> Yearwise 
                     </a></li>
                     
                 </ul>
