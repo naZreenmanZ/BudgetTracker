@@ -12,7 +12,9 @@ if(isset($_POST['submit']))
     $dateexpense=$_POST['dateexpense'];
     $costitem=$_POST['costitem'];
 	
-    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
+    $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
+	//echo "<script>alert($costitem);</script>"; 
+
 	if($query)
 	{
 		echo "<script>alert('Expense has been added');</script>";
@@ -20,7 +22,9 @@ if(isset($_POST['submit']))
 	}
 	else 
 	{
+		
 		echo "<script>alert('Something went wrong. Please try again');</script>";
+		
 
 	}
   

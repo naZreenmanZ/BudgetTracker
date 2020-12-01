@@ -13,7 +13,7 @@ include('includes/dbconnection.php');
             <div class="profile-usertitle">
                 <?php
 $uid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"select FullName from tbluser where ID='$uid'");
+$ret=mysqli_query($con,"select FullName from tbluser where UserId='$uid'");
 $row=mysqli_fetch_array($ret);
 $name=$row['FullName'];
 
@@ -34,7 +34,7 @@ $name=$row['FullName'];
                 <em class="fa fa-navicon">&nbsp;</em>Expenses<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                    <li><a class="" href="add-expense4.php">
+                    <li><a class="" href="add-expense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Expenses
                     </a></li>
                     <li><a class="" href="manage-expense.php">
@@ -49,7 +49,7 @@ $name=$row['FullName'];
                 <em class="fa fa-navicon">&nbsp;</em>Income<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-2">
-                    <li><a class="" href="add-expense.php">
+                    <li><a class="" href="add-income.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Income
                     </a></li>
                     <li><a class="" href="manage-expense.php">
@@ -64,7 +64,7 @@ $name=$row['FullName'];
                 <em class="fa fa-navicon">&nbsp;</em>Savings<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-3">
-                    <li><a class="" href="add-expense.php">
+                    <li><a class="" href="add-savings.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Savings
                     </a></li>
                     <li><a class="" href="manage-expense.php">
