@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
 	if($query)
 	{
 		echo "<script>alert('Category has been added');</script>";
-		echo "<script>window.location.href='manage-expense.php'</script>";
+		echo "<script>window.location.href='addexpense.php'</script>";
 	}
 	else 
 	{

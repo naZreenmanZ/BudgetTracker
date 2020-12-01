@@ -10,7 +10,7 @@ if (strlen($_SESSION['detsuid']==0)) {
 if(isset($_GET['delid']))
 {
 $rowid=intval($_GET['delid']);
-$query=mysqli_query($con,"delete from tblexpense where ID='$rowid'");
+$query=mysqli_query($con,"delete from tblexpense where ExpenseId='$rowid'");
 if($query){
 echo "<script>alert('Record successfully deleted');</script>";
 echo "<script>window.location.href='manage-expense.php'</script>";
@@ -79,7 +79,9 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
                   <th>Expense Item</th>
                   <th>Expense Cost</th>
                   <th>Expense Date</th>
+				  <th>Notes</th>
                   <th>Action</th>
+				  
                 </tr>
               </thead>
               <?php
@@ -96,7 +98,8 @@ while ($row=mysqli_fetch_array($ret)) {
                   <td><?php  echo $row['ExpenseItem'];?></td>
                   <td><?php  echo $row['ExpenseCost'];?></td>
                   <td><?php  echo $row['ExpenseDate'];?></td>
-                  <td><a href="manage-expense.php?delid=<?php echo $row['ID'];?>">Delete</a>
+				  <td><?php  echo $row['ExpenseNote'];?></td>
+                  <td><a href="manage-expense.php?delid=<?php echo $row['ExpenseId'];?>">Delete</a>
                 </tr>
                 <?php 
 $cnt=$cnt+1;

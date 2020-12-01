@@ -11,8 +11,13 @@ if(isset($_POST['submit']))
   	$userid=$_SESSION['detsuid'];
     $dateexpense=$_POST['dateexpense'];
     $costitem=$_POST['costitem'];
+	$note=$_POST['note'];
+	$item=$_POST['category'];
+	$ret=mysqli_query($con,"select * from tblcategory where CategName='$item'");
+	$row=mysqli_fetch_array($ret);
 	
-    $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
+	$categid=$row['CategId'];
+    $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost,ExpenseNote,CategId) value('$userid','$dateexpense','$costitem','$note','$categid')");
 	//echo "<script>alert($costitem);</script>"; 
 
 	if ($query)
@@ -95,17 +100,21 @@ if(isset($_POST['submit']))
 									<select class="form-control" name="category" value="" required="true">
 										 <option value="" disabled selected>Select Category</option>
 										 <?php
-										 // categories to be displayed via loop from tblcategory database
-										 ?>
-										<option value="book" name="1">Book</option>
+										 $userid=$_SESSION['detsuid'];
+										 $ret=mysqli_query($con,"select CategName from tblcategory where UserId='$userid' and CategType='expense'");
+										 while ($rows=mysqli_fetch_array($ret))
+										 {
+											$name=$rows['CategName'];
+											echo "<option value='$name'>$name</option>";										  
+										 
+										  } ?>
 										
 									</select>
-								
 									<div class="form-group has-success">
 									<p align="right">
 									<br>
 									<a href="addcategory.php" class="btn btn-primary">Add Catgeory</a></span>
-									<!-- <br><button onclick="addcategory()" class="btn btn-primary" name="addcategory">Add Category</button>-->
+									
 									</p>
 									</div>
 									
@@ -114,6 +123,13 @@ if(isset($_POST['submit']))
 								<div class="form-group">
 									<label>Cost of Item</label>
 									<input class="form-control" type="text" value="" required="true" name="costitem">
+								</div>
+								
+								<div class="form-group">
+									<label>Note</label>
+									<textarea class="form-control" value="" name="note" rows=4 cols=7>
+									
+									</textarea>
 								</div>
 																
 								<div class="form-group has-success">
