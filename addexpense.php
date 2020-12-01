@@ -15,7 +15,7 @@ if(isset($_POST['submit']))
     $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
 	//echo "<script>alert($costitem);</script>"; 
 
-	if($query)
+	if ($query)
 	{
 		echo "<script>alert('Expense has been added');</script>";
 		echo "<script>window.location.href='manage-expense.php'</script>";

@@ -9,15 +9,15 @@ if (strlen($_SESSION['detsuid']==0)) {
 if(isset($_POST['submit']))
   {
   	$userid=$_SESSION['detsuid'];
-    $dateexpense=$_POST['dateexpense'];
-    $costitem=$_POST['costitem'];
+    $category=$_POST['category'];
+	$type='expense';
 	
-    $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
+    $query=mysqli_query($con,"insert into tblcategory(UserId,CategName,CategType) value('$userid','$category','$type')");
 	//echo "<script>alert($costitem);</script>"; 
 
 	if($query)
 	{
-		echo "<script>alert('Expense has been added');</script>";
+		echo "<script>alert('Category has been added');</script>";
 		echo "<script>window.location.href='manage-expense.php'</script>";
 	}
 	else 
@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
 							
 							<form role="form" method="post" action="">								
 								<div class="form-group">
-									<label>New Categoey</label>
+									<label>New Category</label>
 									<input class="form-control" type="text" value="" required="true" name="category">
 								</div>
 																

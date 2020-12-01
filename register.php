@@ -79,7 +79,7 @@ return true;
 								<input type="password" class="form-control" id="repeatpassword" name="repeatpassword" placeholder="Repeat Password" required="true">
 							</div>
 							<div class="checkbox">
-								<button type="submit" value="submit" name="submit" class="btn btn-primary">Register</button><span style="padding-left:250px">
+								<button type="submit" value="submit" name="submit" class="btn btn-primary">Register</button><span style="padding-left:200px">
 								<a href="index.php" class="btn btn-primary">Login</a></span>
 							</div>
 							 </fieldset>
