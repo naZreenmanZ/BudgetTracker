@@ -16,6 +16,10 @@ $msg="This email  associated with another account";
     }
     else{
     $query=mysqli_query($con, "insert into tbluser(FullName, MobileNumber, Email,  Password) value('$fname', '$mobno', '$email', '$password' )");
+	$queryf=mysqli_query($con,"select * from tbluser where Email='$email'");
+	$row=mysqli_fetch_array($queryf);
+	$userid=$row['UserId'];
+	$query1=mysqli_query($con,"insert into tblbalance(UserId) value('$userid')");
     if ($query) {
     $msg="You have successfully registered";
   }

@@ -8,29 +8,53 @@ if (strlen($_SESSION['detsuid']==0)) {
 
 if(isset($_POST['submit']))
   {
+	 //form method variables
   	$userid=$_SESSION['detsuid'];
     $dateexpense=$_POST['dateexpense'];
     $costitem=$_POST['costitem'];
 	$note=$_POST['note'];
 	$item=$_POST['category'];
-	$ret=mysqli_query($con,"select * from tblcategory where CategName='$item'");
-	$row=mysqli_fetch_array($ret);
 	
-	$categid=$row['CategId'];
-    $query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost,ExpenseNote,CategId) value('$userid','$dateexpense','$costitem','$note','$categid')");
-	//echo "<script>alert($costitem);</script>"; 
-
-	if ($query)
+	//balance table query for limit 
+	$bet=mysqli_query($con,"select * from tblbalance where UserId='$userid'");
+	$row1=mysqli_fetch_array($bet);
+	$limit=$row1['BalanceLimit'];
+	$balance=$row1['BalanceAmount'];
+	
+	//comparing whether the expense crosses the limit
+	if(($balance-$costitem)>=$limit)
 	{
-		echo "<script>alert('Expense has been added');</script>";
-		echo "<script>window.location.href='manage-expense.php'</script>";
+	
+		$updateamount=$balance-$costitem;
+		//query to fetch category name 
+		$ret=mysqli_query($con,"select * from tblcategory where CategName='$item'");
+		$row=mysqli_fetch_array($ret);	
+		$categid=$row['CategId'];
+	
+		//updating the balance 
+		$det=mysqli_query($con,"update tblbalance SET BalanceAmount='$updateamount' where UserId='$userid'");
+		
+		//expense insertion query
+		$query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost,ExpenseNote,CategId) value('$userid','$dateexpense','$costitem','$note','$categid')");
+	
+
+		if ($query || $det)
+		{
+			echo "<script>alert('Expense has been added');</script>";
+			echo "<script>window.location.href='manage-expense.php'</script>";
+		}
+		else 
+		{
+		
+			echo "<script>alert('Something went wrong. Please try again');</script>";
+		
+
+		}
+	
 	}
-	else 
+	else
 	{
-		
-		echo "<script>alert('Something went wrong. Please try again');</script>";
-		
-
+		echo "<script>alert('The expense you entered is crossing your balance limit. Please enter a smaller expense');</script>";
 	}
   
 }

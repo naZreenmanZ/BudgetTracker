@@ -14,30 +14,33 @@ $rowid=intval($_GET['delid']);
 //echo "<script>alert($rowid);</script>";
 
 
-//storing expense cost
-$queryf=mysqli_query($con,"select * from tblexpense where ExpenseId='$rowid'");
+//storing income cost
+$queryf=mysqli_query($con,"select * from tblincome where IncomeId='$rowid'");
 $row=mysqli_fetch_array($queryf);
-$cost=$row['ExpenseCost'];
+$cost=$row['IncomeCost'];
 
 //balance amount storing 
 
 $querys=mysqli_query($con,"select * from  tblbalance where UserId='$userid'");
 $roww=mysqli_fetch_array($querys);
 $amount=$roww['BalanceAmount'];
-$update=$amount+$cost;
+$update=$amount-$cost;
 
 
 //updating balance amount
 $queryl=mysqli_query($con,"update tblbalance set BalanceAmount='$update' where UserId='$userid'");
 
 // deleting income details 
-$query=mysqli_query($con,"delete from tblexpense where ExpenseId='$rowid'");
+$query=mysqli_query($con,"delete from tblincome where IncomeId='$rowid'");
 
-if($query){
-echo "<script>alert('Record successfully deleted');</script>";
-echo "<script>window.location.href='manage-expense.php'</script>";
-} else {
-echo "<script>alert('Something went wrong. Please try again');</script>";
+if($query)
+{
+	echo "<script>alert('Record successfully deleted');</script>";
+	echo "<script>window.location.href='manage-income.php'</script>";
+} 
+else
+{
+	echo "<script>alert('Something went wrong. Please try again');</script>";
 
 }
 
@@ -50,7 +53,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Daily Expense Tracker || Manage Expense</title>
+	<title>Daily Expense Tracker || Manage Income</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
@@ -73,7 +76,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Expense</li>
+				<li class="active">Income</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -86,7 +89,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 				
 				
 				<div class="panel panel-default">
-					<div class="panel-heading">Expense</div>
+					<div class="panel-heading">Income</div>
 					<div class="panel-body">
 						<p style="font-size:16px; color:red" align="center"> <?php if($msg){
     echo $msg;
@@ -98,9 +101,9 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
               <thead>
                 <tr>
                   <th>S.NO</th>
-                  <th>Expense Item</th>
-                  <th>Expense Cost</th>
-                  <th>Expense Date</th>
+                  <th>Income Item</th>
+                  <th>Income Cost</th>
+                  <th>Incoe Date</th>
 				  <th>Notes</th>
                   <th>Action</th>
 				  
@@ -108,7 +111,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
               </thead>
               <?php
               $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"select * from tblexpense where UserId='$userid'");
+$ret=mysqli_query($con,"select * from tblincome where UserId='$userid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -122,10 +125,10 @@ $categid=$row['CategId'];
                   <td><?php echo $cnt;?></td>
               
                   <td><?php  echo $roww['CategName'];?></td>
-                  <td><?php  echo $row['ExpenseCost'];?></td>
-                  <td><?php  echo $row['ExpenseDate'];?></td>
-				  <td><?php  echo $row['ExpenseNote'];?></td>
-                  <td><a href="manage-expense.php?delid=<?php echo $row['ExpenseId'];?>">Delete</a>
+                  <td><?php  echo $row['IncomeCost'];?></td>
+                  <td><?php  echo $row['IncomeDate'];?></td>
+				  <td><?php  echo $row['IncomeNote'];?></td>
+                  <td><a href="manage-income.php?delid=<?php echo $row['IncomeId'];?>">Delete</a>
                 </tr>
                 <?php 
 $cnt=$cnt+1;

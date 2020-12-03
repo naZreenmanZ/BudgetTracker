@@ -8,21 +8,48 @@ if (strlen($_SESSION['detsuid']==0)) {
 
 if(isset($_POST['submit']))
   {
+	 //form method variables
   	$userid=$_SESSION['detsuid'];
-    $dateexpense=$_POST['dateexpense'];
+    $dateincome=$_POST['dateincome'];
     $costitem=$_POST['costitem'];
+	$note=$_POST['note'];
+	$item=$_POST['category'];
 	
-    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseCost) value('$userid','$dateexpense','$costitem')");
-	if($query)
-	{
-		echo "<script>alert('Expense has been added');</script>";
-		echo "<script>window.location.href='manage-expense.php'</script>";
-	}
-	else 
-	{
-		echo "<script>alert('Something went wrong. Please try again');</script>";
+	//query to obtain balance
+	$bet=mysqli_query($con,"select * from tblbalance where UserId='$userid'");
+	$row1=mysqli_fetch_array($bet);
+	$balance=$row1['BalanceAmount'];
+	
+	//updatig balance amount
+			$updateamount=$balance+$costitem;
+			
+			
+		//query to fetch category name 
+		$ret=mysqli_query($con,"select * from tblcategory where CategName='$item'");
+		$row=mysqli_fetch_array($ret);	
+		$categid=$row['CategId'];
+	
+		//updating the balance 
+		$det=mysqli_query($con,"update tblbalance SET BalanceAmount='$updateamount' where UserId='$userid'");
+		
+		//expense insertion query
+		$query=mysqli_query($con,"insert into tblincome(UserId,IncomeDate,IncomeCost,IncomeNote,CategId) value('$userid','$dateincome','$costitem','$note','$categid')");
+	
 
-	}
+		if ($query || $det)
+		{
+			echo "<script>alert('Income has been added');</script>";
+			echo "<script>window.location.href='manage-income.php'</script>";
+		}
+		else 
+		{
+		
+			echo "<script>alert('Something went wrong. Please try again');</script>";
+		
+
+		}
+	
+	
   
 }
   ?>
@@ -31,7 +58,7 @@ if(isset($_POST['submit']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Daily Expense Tracker || Add Expense</title>
+	<title>Daily Expense Tracker || Add Income</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
@@ -60,7 +87,7 @@ if(isset($_POST['submit']))
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Expense</li>
+				<li class="active">Income</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -73,7 +100,7 @@ if(isset($_POST['submit']))
 				
 				
 				<div class="panel panel-default">
-					<div class="panel-heading">Expense</div>
+					<div class="panel-heading">Income</div>
 					<div class="panel-body">
 						<p style="font-size:16px; color:red" align="center"> <?php if($msg){
     echo $msg;
@@ -82,8 +109,8 @@ if(isset($_POST['submit']))
 							
 							<form role="form" method="post" action="">
 								<div class="form-group">
-									<label>Date of Expense</label>
-									<input class="form-control" type="date" value="" name="dateexpense" required="true">
+									<label>Date of Income</label>
+									<input class="form-control" type="date" value="" name="dateincome" required="true">
 								</div>
 								<div class="form-group">
 									<label>Category</label>
@@ -91,17 +118,21 @@ if(isset($_POST['submit']))
 									<select class="form-control" name="category" value="" required="true">
 										 <option value="" disabled selected>Select Category</option>
 										 <?php
-										 // categories to be displayed via loop from tblcategory database
-										 ?>
-										<option value="book" name="1">Book</option>
+										 $userid=$_SESSION['detsuid'];
+										 $ret=mysqli_query($con,"select CategName from tblcategory where UserId='$userid' and CategType='income'");
+										 while ($rows=mysqli_fetch_array($ret))
+										 {
+											$name=$rows['CategName'];
+											echo "<option value='$name'>$name</option>";										  
+										 
+										  } ?>
 										
 									</select>
-								
 									<div class="form-group has-success">
 									<p align="right">
 									<br>
-									<a href="addcategory.php" class="btn btn-primary">Add Catgeory</a></span>
-									<!-- <br><button onclick="addcategory()" class="btn btn-primary" name="addcategory">Add Category</button>-->
+									<a href="addcategoryi.php" class="btn btn-primary">Add Catgeory</a></span>
+									
 									</p>
 									</div>
 									
@@ -110,6 +141,13 @@ if(isset($_POST['submit']))
 								<div class="form-group">
 									<label>Cost of Item</label>
 									<input class="form-control" type="text" value="" required="true" name="costitem">
+								</div>
+								
+								<div class="form-group">
+									<label>Note</label>
+									<textarea class="form-control" value="" name="note" rows=4 cols=7>
+									
+									</textarea>
 								</div>
 																
 								<div class="form-group has-success">

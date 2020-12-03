@@ -11,7 +11,7 @@ if (strlen($_SESSION['detsuid']==0)) {
     $fullname=$_POST['fullname'];
   $mobno=$_POST['contactnumber'];
 
-     $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno' where ID='$userid'");
+     $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno' where UserId='$userid'");
     if ($query) {
     $msg="User profile has been updated.";
   }
@@ -70,7 +70,7 @@ if (strlen($_SESSION['detsuid']==0)) {
 						<div class="col-md-12">
 							 <?php
 $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"select * from tbluser where ID='$userid'");
+$ret=mysqli_query($con,"select * from tbluser where UserID='$userid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

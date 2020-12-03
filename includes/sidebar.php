@@ -52,7 +52,7 @@ $name=$row['FullName'];
                     <li><a class="" href="add-income.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Income
                     </a></li>
-                    <li><a class="" href="manage-expense.php">
+                    <li><a class="" href="manage-income.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Manage Income
                     </a></li>
                     

@@ -1,57 +1,58 @@
 <?php
 session_start();
-include('includes/dbconnection.php');
 error_reporting(0);
+include('includes/dbconnection.php');
 if (strlen($_SESSION['detsuid']==0)) {
   header('location:logout.php');
   } else{
+
 if(isset($_POST['submit']))
-{
-$userid=$_SESSION['detsuid'];
-$cpassword=md5($_POST['currentpassword']);
-$newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select ID from tbluser where UserId='$userid' and   Password='$cpassword'");
-$row=mysqli_fetch_array($query);
-if($row>0){
-$ret=mysqli_query($con,"update tbluser set Password='$newpassword' where UserId='$userid'");
-$msg= "Your password successully changed"; 
-} else {
+  {
+  	$userid=$_SESSION['detsuid'];
+    $category=$_POST['category'];
+	$type='income';
+	
+    $query=mysqli_query($con,"insert into tblcategory(UserId,CategName,CategType) value('$userid','$category','$type')");
+	//echo "<script>alert($costitem);</script>"; 
 
-$msg="Your current password is wrong";
-}
+	if($query)
+	{
+		echo "<script>alert('Category has been added');</script>";
+		echo "<script>window.location.href='add-income.php'</script>";
+	}
+	else 
+	{
+		
+		echo "<script>alert('Something went wrong. Please try again');</script>";
+		
 
-
-
-}
-
+	}
   
+}
   ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Daily Expense Tracker || Change Password</title>
+	<title>Daily Expense Tracker || Add Expense</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
 	
+	<!-- <script>   
+	 function addcategory() {   
+	window.open("addcategory.php");  
+	}   
+	</script>   -->
+	
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	<script type="text/javascript">
-function checkpass()
-{
-if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value)
-{
-alert('New Password and Confirm Password field does not match');
-document.changepassword.confirmpassword.focus();
-return false;
-}
-return true;
-} 
-
-</script>
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
 	<?php include_once('includes/header.php');?>
@@ -63,7 +64,7 @@ return true;
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Change Password</li>
+				<li class="active">Category</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -76,41 +77,26 @@ return true;
 				
 				
 				<div class="panel panel-default">
-					<div class="panel-heading">Change Password</div>
+					<div class="panel-heading">Category</div>
 					<div class="panel-body">
 						<p style="font-size:16px; color:red" align="center"> <?php if($msg){
     echo $msg;
   }  ?> </p>
 						<div class="col-md-12">
-							 <?php
-$userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"select * from tbluser where UserId='$userid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-							<form role="form" method="post" action="" name="changepassword" onsubmit="return checkpass();">
+							
+							<form role="form" method="post" action="">								
 								<div class="form-group">
-									<label>Current Password</label>
-									<input type="password" name="currentpassword" class=" form-control" required= "true" value="">
+									<label>New Category</label>
+									<input class="form-control" type="text" value="" required="true" name="category">
 								</div>
-								<div class="form-group">
-									<label>New Password</label>
-									<input type="password" name="newpassword" class="form-control" value="" required="true">
-								</div>
-								
-								<div class="form-group">
-									<label>Confirm Password</label>
-									<input type="password" name="confirmpassword" class="form-control" value="" required="true">
-								</div>
-								
+																
 								<div class="form-group has-success">
-									<button type="submit" class="btn btn-primary" name="submit">Change</button>
+									<button type="submit" class="btn btn-primary" name="submit">Add Category</button>
 								</div>
 								
 								
 								</div>
-								<?php } ?>
+								
 							</form>
 						</div>
 					</div>
