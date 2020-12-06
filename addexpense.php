@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
 		$query=mysqli_query($con,"insert into tblexpense(UserId,ExpenseDate,ExpenseCost,ExpenseNote,CategId) value('$userid','$dateexpense','$costitem','$note','$categid')");
 	
 
-		if ($query || $det)
+		if ($query && $det)
 		{
 			echo "<script>alert('Expense has been added');</script>";
 			echo "<script>window.location.href='manage-expense.php'</script>";

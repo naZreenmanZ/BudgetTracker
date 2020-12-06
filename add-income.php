@@ -32,11 +32,11 @@ if(isset($_POST['submit']))
 		//updating the balance 
 		$det=mysqli_query($con,"update tblbalance SET BalanceAmount='$updateamount' where UserId='$userid'");
 		
-		//expense insertion query
+		//income insertion query
 		$query=mysqli_query($con,"insert into tblincome(UserId,IncomeDate,IncomeCost,IncomeNote,CategId) value('$userid','$dateincome','$costitem','$note','$categid')");
 	
 
-		if ($query || $det)
+		if ($query && $det)
 		{
 			echo "<script>alert('Income has been added');</script>";
 			echo "<script>window.location.href='manage-income.php'</script>";

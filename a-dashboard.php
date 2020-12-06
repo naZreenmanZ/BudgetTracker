@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['detsuid']==0)) {
+if (strlen($_SESSION['ausid']==0)) {
   header('location:logout.php');
   } else{
 
@@ -30,7 +30,7 @@ if (strlen($_SESSION['detsuid']==0)) {
 <body>
 	
 	<?php include_once('includes/header.php');?>
-	<?php include_once('includes/sidebar.php');?>
+	<?php include_once('includes/asidebar.php');?>
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -59,19 +59,18 @@ if (strlen($_SESSION['detsuid']==0)) {
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
 <?php
-//Balance Available
-$userid=$_SESSION['detsuid'];
+//Total Users
 $tdate=date('Y-m-d');
-$query=mysqli_query($con,"select BalanceAmount  from tblbalance where UserId='$userid'");
+$query=mysqli_query($con,"select count(UserId) as total from tbluser");
 $result=mysqli_fetch_array($query);
-$sum_today_expense=$result['BalanceAmount'];
+$total_users=$result['total'];
  ?> 
 
-						<h4>Balance Available</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="<?php echo $sum_today_expense;?>" ><span class="percent"><?php if($sum_today_expense==""){
+						<h4>Total Users</h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="<?php echo $total_users;?>" ><span class="percent"><?php if($total_users==""){
 echo "0";
 } else {
-echo $sum_today_expense;
+echo $total_users;
 }
 
 	?></span></div>
@@ -85,18 +84,18 @@ echo $sum_today_expense;
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<?php
-//Total Expense
-$userid=$_SESSION['detsuid'];
-$query5=mysqli_query($con,"select sum(ExpenseCost)  as totalexpense from tblexpense where UserId='$userid';");
+//Total Requested Users
+
+$query5=mysqli_query($con,"select count(UserId) as total from tbluser where UserStatus='Requested'");
 $result5=mysqli_fetch_array($query5);
-$sum_total_expense=$result5['totalexpense'];
+$sum_requested_user=$result5['total'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Total Expenses</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="<?php echo $sum_total_expense;?>" ><span class="percent"><?php if($sum_total_expense==""){
+						<h4>Total Requested Users</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="<?php echo $sum_requested_user;?>" ><span class="percent"><?php if($sum_requested_user==""){
 echo "0";
 } else {
-echo $sum_total_expense;
+echo $sum_requested_user;
 }
 
 	?></span></div>
@@ -108,19 +107,18 @@ echo $sum_total_expense;
 		<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<?php
-//Total Income
+//Total Verified Users
 
-$userid=$_SESSION['detsuid'];
-$query5=mysqli_query($con,"select sum(IncomeCost)  as totalIncome from tblincome where UserId='$userid';");
+$query5=mysqli_query($con,"select count(UserId) as total from tbluser where UserStatus='Verified'");
 $result5=mysqli_fetch_array($query5);
-$sum_total_Income=$result5['totalIncome'];
+$sum_verified_user=$result5['total'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Total Incomes</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="<?php echo $sum_total_Income;?>" ><span class="percent"><?php if($sum_total_Income==""){
+						<h4>Total Verified Users</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="<?php echo $sum_verified_user;?>" ><span class="percent"><?php if($sum_verified_user==""){
 echo "0";
 } else {
-echo $sum_total_Income;
+echo $sum_verified_user;
 }
 
 	?></span></div>

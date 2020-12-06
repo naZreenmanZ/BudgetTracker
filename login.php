@@ -7,12 +7,17 @@ if(isset($_POST['login']))
   {
     $email=$_POST['email'];
     $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select UserId from tbluser where  Email='$email' && Password='$password' ");
+    $query=mysqli_query($con,"select UserId, UserStatus from tbluser where  Email='$email' && Password='$password' && UserStatus='Verified' ");
     $ret=mysqli_fetch_array($query);
+	$status=$ret['UserStatus'];
     if($ret>0){
       $_SESSION['detsuid']=$ret['UserId'];
      header('location:dashboard.php');
     }
+	else if(strcmp($status,"Requested"))
+	{
+		$msg="User not Verified";
+	}
     else{
     $msg="Invalid Details.";
     }
@@ -30,7 +35,8 @@ if(isset($_POST['login']))
 	
 </head>
 <body>
-
+<?php include_once('includes/lheader.php');?>
+<br>
 	<div class="row">
 			<h2 align="center">Daily Budget Tracker</h2>
 	<hr />
@@ -51,7 +57,8 @@ if(isset($_POST['login']))
 								<input class="form-control" placeholder="Password" name="password" type="password" value="" required="true">
 							</div>
 							<div class="checkbox">
-								<button type="submit" value="login" name="login" class="btn btn-primary">login</button> <span style="padding-left:200px">
+								<button type="submit" value="login" name="login" class="btn btn-primary">login</button>
+								<span style="padding-left:200px">
 								<a href="register.php" class="btn btn-primary">Register</a></span>
 							</div>
 						</fieldset>

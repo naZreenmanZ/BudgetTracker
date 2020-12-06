@@ -34,11 +34,17 @@ $name=$row['FullName'];
                 <em class="fa fa-navicon">&nbsp;</em>Expenses<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
+					<li><a class="" href="expense-limit.php">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Expense Limit
+                    </a></li>
                     <li><a class="" href="addexpense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Expenses
                     </a></li>
                     <li><a class="" href="manage-expense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Manage Expenses
+                    </a></li>
+					 <li><a class="" href="view-expense.php">
+                        <span class="fa fa-arrow-right">&nbsp;</span> View Expenses
                     </a></li>
                     
                 </ul>
@@ -46,7 +52,7 @@ $name=$row['FullName'];
             </li>
 			
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-2">
-                <em class="fa fa-navicon">&nbsp;</em>Income<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em>Income<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-2">
                     <li><a class="" href="add-income.php">
@@ -55,20 +61,26 @@ $name=$row['FullName'];
                     <li><a class="" href="manage-income.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Manage Income
                     </a></li>
+					 <li><a class="" href="view-income.php">
+                        <span class="fa fa-arrow-right">&nbsp;</span> View Income
+                    </a></li>
                     
                 </ul>
 
             </li>
 			
 			 <li class="parent "><a data-toggle="collapse" href="#sub-item-3">
-                <em class="fa fa-navicon">&nbsp;</em>Savings<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em>Savings<span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-3">
                     <li><a class="" href="add-savings.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Add Savings
                     </a></li>
-                    <li><a class="" href="manage-expense.php">
+                    <li><a class="" href="manage-savings.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Manage Savings
+                    </a></li>
+					 <li><a class="" href="view-savings.php">
+                        <span class="fa fa-arrow-right">&nbsp;</span> View Savings
                     </a></li>
                     
                 </ul>
@@ -76,7 +88,7 @@ $name=$row['FullName'];
             </li>
            
   <li class="parent "><a data-toggle="collapse" href="#sub-item-4">
-                <em class="fa fa-navicon">&nbsp;</em>Expense Report <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em>Expense Report <span data-toggle="collapse" href="#sub-item-4" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                    <ul class="children collapse" id="sub-item-4">
                     <li><a class="" href="expense-datewise-reports.php">

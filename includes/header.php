@@ -11,7 +11,7 @@ include('includes/dbconnection.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="dashboard.php"><span>Daily Expense Tracker</span></a>
+                <a class="navbar-brand" href="dashboard.php"><span>Daily Budget Tracker</span></a>
                 
             </div>
             

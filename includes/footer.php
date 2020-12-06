@@ -1,4 +1,4 @@
 <div class="col-sm-12">
-				<p class="back-link">Daily Expense Tracker</p>
+				<p class="back-link">Grayscale</p>
 				
 			</div>
