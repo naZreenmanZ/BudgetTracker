@@ -84,7 +84,7 @@ return true;
 							</div>
 							<div class="checkbox">
 								<button type="submit" value="submit" name="submit" class="btn btn-primary">Register</button><span style="padding-left:200px">
-								<a href="index.php" class="btn btn-primary">Login</a></span>
+								<a href="login.php" class="btn btn-primary">Login</a></span>
 							</div>
 							 </fieldset>
 					</form>
