@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll; 
+}
 body {
   background: #f1f4f7;
   padding-top: 60px;

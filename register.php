@@ -38,6 +38,7 @@ $msg="This email  associated with another account";
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Daily Expense Tracker - Signup</title>
+	  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
@@ -55,8 +56,9 @@ return true;
 
 </script>
 <body>
+<?php include_once('includes/lheader.php');?>
 	<div class="row">
-			<h2 align="center">Daily Expense Tracker</h2>
+			<h2 align="center">Daily Budget Tracker</h2>
 	<hr />
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">

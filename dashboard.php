@@ -15,6 +15,7 @@ if (strlen($_SESSION['detsuid']==0)) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Daily Expense Tracker - Dashboard</title>
+	  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
@@ -108,6 +109,33 @@ echo $sum_total_expense;
 		<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<?php
+					
+					
+//Total Savings
+$userid=$_SESSION['detsuid'];
+$query5=mysqli_query($con,"select sum(SavingsAmount)  as totalamount from tblsavings where UserId='$userid';");
+$result5=mysqli_fetch_array($query5);
+$sum_total_savings=$result5['totalamount'];
+ ?>
+					<div class="panel-body easypiechart-panel">
+						<h4>Total Savings</h4>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="<?php echo $sum_total_savings;?>" ><span class="percent"><?php if($sum_total_savings==""){
+echo "0";
+} else {
+echo $sum_total_savings;
+}
+
+	?></span></div>
+					</div>
+				</div>
+			</div>
+		
+
+		<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<?php			
+					
+					
 //Total Income
 
 $userid=$_SESSION['detsuid'];

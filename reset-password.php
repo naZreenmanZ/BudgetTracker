@@ -25,6 +25,7 @@ session_destroy();
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Daily Expense Tracker - Forgot Reset</title>
+	  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
@@ -63,7 +64,7 @@ return true;
 								<input class="form-control" placeholder="Confirm Password" name="confirmpassword" type="password" value="" required="true">
 							</div>
 							<div class="checkbox">
-								<button type="submit" value="" name="submit" class="btn btn-primary">Reset</button><span style="padding-left:250px"><a href="index.php" class="btn btn-primary">Login</a></span>
+								<button type="submit" value="" name="submit" class="btn btn-primary">Reset</button><span style="padding-left:200px"><a href="login.php" class="btn btn-primary">Login</a></span>
 
 							</div>
 						

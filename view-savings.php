@@ -18,6 +18,7 @@ else
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Daily Expense Tracker - View Expense</title>
+		  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<link href="css/datepicker3.css" rel="stylesheet">
@@ -56,7 +57,8 @@ else
 	
 		<div class="row">
 	<?php		
-		$berry=mysqli_query($con,"select * from tblcategory where CategType='savings'");
+	$userid=$_SESSION['detsuid'];
+		$berry=mysqli_query($con,"select * from tblcategory where CategType='savings' and UserId='$userid'");
 
 while($rows=mysqli_fetch_array($berry))
 { ?>

@@ -11,7 +11,7 @@ include('includes/dbconnection.php');
                 <a class="navbar-brand" href="index.html" > <span>Daily Budget Tracker</span></a>
 				
 				
-				<a class="navbar-brand" href="alogin.php"><span style="padding-left:900px"><img src="assets/img/admin.png" type="image/x-icon" height="30"></span></a>
+				<a class="navbar-brand" href="alogin.php"><span style="padding-left:875px"><img src="assets/img/admin.png" type="image/x-icon" height="30"></span></a>
             </div>
 			
             
